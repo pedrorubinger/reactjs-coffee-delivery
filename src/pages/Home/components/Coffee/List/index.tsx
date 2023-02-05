@@ -1,23 +1,24 @@
 import { useState } from "react"
 
+import { coffeeListData } from "../../../../../data/CoffeeListData"
+import { Coffee } from "../../../../../interfaces"
 import {
   CoffeeListContainer,
   CoffeeListContent,
   CoffeeListTitle,
   CoffeeListCardsContainer,
 } from "./styles"
-import { Coffee, coffeeListData } from "../../../../data/CoffeeListData"
-import { CoffeeCard } from "../CoffeeCard"
+import { CoffeeCard } from "../Card"
 
 export const CoffeeList = () => {
   const [list, setList] = useState<Coffee[]>(coffeeListData)
 
   const onChangeAmount = (operation: "-" | "+", id: string) => {
-    const getAmount = (base: number): number => {
-      if (base <= 0) return 1
-      if (base >= 50) return 50
+    const getAmount = (amount: number): number => {
+      if (amount <= 0) return 1
+      if (amount >= 50) return 50
 
-      return base
+      return amount
     }
 
     setList((prev) =>

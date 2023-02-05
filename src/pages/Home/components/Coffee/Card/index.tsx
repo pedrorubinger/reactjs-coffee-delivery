@@ -1,7 +1,7 @@
 import { ShoppingCart, Minus, Plus } from "phosphor-react"
 
-import { Coffee } from "../../../../data/CoffeeListData"
-import { formatCurrency } from "../../../../utils"
+import { Coffee } from "../../../../../data/CoffeeListData"
+import { formatCurrency } from "../../../../../utils"
 import {
   CoffeeLabelCard,
   CoffeeCardContainer,

@@ -7,15 +7,7 @@ import LatteImg from "../assets/Latte.svg"
 import CapuccinoImg from "../assets/Capuccino.svg"
 import MacchiatoImg from "../assets/Macchiato.svg"
 
-export interface Coffee {
-  id: string
-  labels: string[]
-  title: string
-  description: string
-  price: number
-  image: string
-  amount: number
-}
+import { Coffee } from "../interfaces"
 
 export const coffeeListData: Coffee[] = [
   {

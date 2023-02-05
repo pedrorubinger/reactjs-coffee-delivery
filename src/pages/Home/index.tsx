@@ -1,5 +1,5 @@
 import { Header } from "../../components/Header"
-import { CoffeeList } from "./components/CoffeeList"
+import { CoffeeList } from "./components/Coffee/List"
 import { Intro } from "./components/Intro"
 import { HomeContainer } from "./styles"
 
