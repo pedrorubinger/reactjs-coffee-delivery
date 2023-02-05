@@ -1,7 +1,7 @@
 import { Header } from "../../components/Header"
-import { FinishOrder } from "./components/FinishOrder"
 import { FinishOrderAddress } from "./components/FinishOrder/Address"
 import { FinishOrderPayment } from "./components/FinishOrder/Payment"
+import { ReviewOrder } from "./components/ReviewOrder"
 import {
   CheckoutCardsSection,
   CheckoutContainer,
@@ -16,12 +16,10 @@ export const Checkout: React.FC<CheckoutProps> = () => {
       <Header />
 
       <CheckoutContent>
-        <FinishOrder />
-
         <CheckoutCardsSection>
           <FinishOrderAddress />
 
-          <div>Second Card</div>
+          <ReviewOrder />
 
           <FinishOrderPayment />
         </CheckoutCardsSection>

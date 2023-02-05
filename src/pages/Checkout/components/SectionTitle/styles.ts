@@ -10,5 +10,6 @@ export const StyledSectionTyle = styled.h3`
   align-items: center;
   gap: 0.9375rem;
 
+  margin-bottom: 0.9375rem;
   color: ${({ theme }) => theme["base-subtitle"]};
 `

@@ -1,8 +1,10 @@
 import { MapPin } from "phosphor-react"
 
 import { Input } from "../../../../../components/Input"
+import { SectionTitle } from "../../SectionTitle"
 import { FinishOrderCard } from "../Card"
 import {
+  FinishOrderAddressContainer,
   FinishOrderAddressForm,
   FinishOrderAddressHeader,
   FinishOrderAddressHeaderContent,
@@ -13,50 +15,54 @@ interface FinishOrderAddressProps {}
 
 export const FinishOrderAddress: React.FC<FinishOrderAddressProps> = () => {
   return (
-    <FinishOrderCard>
-      <FinishOrderAddressHeader>
-        <MapPin size={18} weight="regular" />
+    <FinishOrderAddressContainer>
+      <SectionTitle title="Complete seu pedido" />
 
-        <FinishOrderAddressHeaderContent>
-          <h4>Endereço de Entrega</h4>
-          <h5>Informe o endereço onde deseja receber seu pedido</h5>
-        </FinishOrderAddressHeaderContent>
-      </FinishOrderAddressHeader>
+      <FinishOrderCard>
+        <FinishOrderAddressHeader>
+          <MapPin size={18} weight="regular" />
 
-      <FinishOrderAddressForm>
-        <Input id="postalCode" placeholder="CEP" width="35%" />
+          <FinishOrderAddressHeaderContent>
+            <h4>Endereço de Entrega</h4>
+            <h5>Informe o endereço onde deseja receber seu pedido</h5>
+          </FinishOrderAddressHeaderContent>
+        </FinishOrderAddressHeader>
 
-        <FinishOrderAddressInputRow width="100%">
-          <Input id="street" placeholder="Rua" width="100%" />
-        </FinishOrderAddressInputRow>
+        <FinishOrderAddressForm>
+          <Input id="postalCode" placeholder="CEP" width="35%" />
 
-        <FinishOrderAddressInputRow>
-          <Input id="number" placeholder="Número" width="45%" />
+          <FinishOrderAddressInputRow width="100%">
+            <Input id="street" placeholder="Rua" width="100%" />
+          </FinishOrderAddressInputRow>
 
-          <Input id="complement" placeholder="Complemento" />
-        </FinishOrderAddressInputRow>
+          <FinishOrderAddressInputRow>
+            <Input id="number" placeholder="Número" width="45%" />
 
-        <FinishOrderAddressInputRow>
-          <Input id="district" placeholder="Bairro" width="35%" />
+            <Input id="complement" placeholder="Complemento" />
+          </FinishOrderAddressInputRow>
 
-          <Input
-            id="city"
-            placeholder="Cidade"
-            title="Este campo é preenchido automaticamente com base no seu CEP"
-            width="55%"
-            disabled
-          />
+          <FinishOrderAddressInputRow>
+            <Input id="district" placeholder="Bairro" width="35%" />
 
-          <Input
-            id="state"
-            placeholder="UF"
-            title="Este campo é preenchido automaticamente com base no seu CEP"
-            width="10%"
-            minWidth="4.375rem"
-            disabled
-          />
-        </FinishOrderAddressInputRow>
-      </FinishOrderAddressForm>
-    </FinishOrderCard>
+            <Input
+              id="city"
+              placeholder="Cidade"
+              title="Este campo é preenchido automaticamente com base no seu CEP"
+              width="55%"
+              disabled
+            />
+
+            <Input
+              id="state"
+              placeholder="UF"
+              title="Este campo é preenchido automaticamente com base no seu CEP"
+              width="10%"
+              minWidth="4.375rem"
+              disabled
+            />
+          </FinishOrderAddressInputRow>
+        </FinishOrderAddressForm>
+      </FinishOrderCard>
+    </FinishOrderAddressContainer>
   )
 }

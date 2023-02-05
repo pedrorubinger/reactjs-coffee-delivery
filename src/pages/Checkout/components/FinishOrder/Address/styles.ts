@@ -1,5 +1,10 @@
 import styled from "styled-components"
 
+export const FinishOrderAddressContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export const FinishOrderAddressHeader = styled.header`
   display: flex;
   flex-direction: row;
@@ -9,7 +14,7 @@ export const FinishOrderAddressHeader = styled.header`
     color: ${({ theme }) => theme["yellow-dark"]};
   }
 
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 `
 
 export const FinishOrderAddressHeaderContent = styled.div`
