@@ -89,14 +89,12 @@ export const IntroCoffeeImage = styled.img`
 
 export const IntroItemsContent = styled.div`
   margin-top: 3rem;
+  height: fit-content;
 
   display: grid;
-
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   row-gap: 1.25rem;
-
-  height: fit-content;
 
   @media (max-width: 1370px) {
     grid-template-columns: 1fr;
