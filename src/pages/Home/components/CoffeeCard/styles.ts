@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const CoffeeListCardContainer = styled.div`
+export const CoffeeCardContainer = styled.div`
   border-radius: 6px 36px;
   width: fit-content;
   height: fit-content;
@@ -22,7 +22,7 @@ export const CoffeeListCardContainer = styled.div`
   }
 `
 
-export const CoffeeListLabelCardsContainer = styled.div`
+export const CoffeeLabelCardsContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,7 +31,7 @@ export const CoffeeListLabelCardsContainer = styled.div`
   gap: 0.25rem;
 `
 
-export const CoffeeListLabelCard = styled.div`
+export const CoffeeLabelCard = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -44,7 +44,7 @@ export const CoffeeListLabelCard = styled.div`
   background: ${({ theme }) => theme["yellow-light"]};
 `
 
-export const CoffeeListCardLabelText = styled.span`
+export const CoffeeCardLabelText = styled.span`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
@@ -55,12 +55,12 @@ export const CoffeeListCardLabelText = styled.span`
   color: ${({ theme }) => theme["yellow-dark"]};
 `
 
-export const CoffeeListCardImage = styled.img`
+export const CoffeeCardImage = styled.img`
   top: -2rem;
   position: absolute;
 `
 
-export const CoffeeListCardTitle = styled.h3`
+export const CoffeeCardTitle = styled.h3`
   font-family: "Baloo 2";
   font-style: normal;
   font-weight: 700;
@@ -75,7 +75,7 @@ export const CoffeeListCardTitle = styled.h3`
   color: ${({ theme }) => theme["base-subtitle"]};
 `
 
-export const CoffeeListCardDescription = styled.p`
+export const CoffeeCardDescription = styled.p`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -89,7 +89,7 @@ export const CoffeeListCardDescription = styled.p`
   color: ${({ theme }) => theme["base-label"]};
 `
 
-export const CoffeeListCardFooter = styled.footer`
+export const CoffeeCardFooter = styled.footer`
   display: flex;
   flex: 1;
   align-items: flex-end;
@@ -108,11 +108,11 @@ export const CoffeeListCardFooter = styled.footer`
   }
 `
 
-interface CoffeeListCardPriceProps {
+interface CoffeeCardPriceProps {
   fs: number
 }
 
-export const CoffeeListCardPrice = styled.span<CoffeeListCardPriceProps>`
+export const CoffeeCardPrice = styled.span<CoffeeCardPriceProps>`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;

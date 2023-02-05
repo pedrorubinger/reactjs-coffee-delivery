@@ -3,20 +3,20 @@ import { ShoppingCart, Minus, Plus } from "phosphor-react"
 import { Coffee } from "../../../../data/CoffeeListData"
 import { formatCurrency } from "../../../../utils"
 import {
-  CoffeeListLabelCard,
-  CoffeeListCardContainer,
-  CoffeeListCardLabelText,
-  CoffeeListCardImage,
-  CoffeeListCardTitle,
-  CoffeeListCardFooter,
-  CoffeeListLabelCardsContainer,
-  CoffeeListCardPrice,
+  CoffeeLabelCard,
+  CoffeeCardContainer,
+  CoffeeCardLabelText,
+  CoffeeCardImage,
+  CoffeeCardTitle,
+  CoffeeCardFooter,
+  CoffeeLabelCardsContainer,
+  CoffeeCardPrice,
   CoffeeCardPurchaseContainer,
   CoffeeCardPurchaseCart,
   CoffeeCardPurchaseAmountActions,
   CoffeeCardPurchaseControl,
   CoffeeCardPurchaseAmount,
-  CoffeeListCardDescription,
+  CoffeeCardDescription,
 } from "./styles"
 
 interface CoffeeCardProps {
@@ -33,27 +33,25 @@ export const CoffeeCard: React.FC<CoffeeCardProps> = ({
     formattedPrice?.length >= 8 ? 1.5 - formattedPrice?.length / 30 : 1.5
 
   return (
-    <CoffeeListCardContainer key={coffee.id}>
-      <CoffeeListCardImage src={coffee.image} alt={coffee.title} />
+    <CoffeeCardContainer>
+      <CoffeeCardImage src={coffee.image} alt={coffee.title} />
 
-      <CoffeeListLabelCardsContainer>
+      <CoffeeLabelCardsContainer>
         {coffee.labels.map((label) => (
-          <CoffeeListLabelCard key={label}>
-            <CoffeeListCardLabelText>{label}</CoffeeListCardLabelText>
-          </CoffeeListLabelCard>
+          <CoffeeLabelCard key={label}>
+            <CoffeeCardLabelText>{label}</CoffeeCardLabelText>
+          </CoffeeLabelCard>
         ))}
-      </CoffeeListLabelCardsContainer>
+      </CoffeeLabelCardsContainer>
 
-      <CoffeeListCardTitle>{coffee.title}</CoffeeListCardTitle>
+      <CoffeeCardTitle>{coffee.title}</CoffeeCardTitle>
 
-      <CoffeeListCardDescription>
-        {coffee.description}
-      </CoffeeListCardDescription>
+      <CoffeeCardDescription>{coffee.description}</CoffeeCardDescription>
 
-      <CoffeeListCardFooter>
-        <CoffeeListCardPrice fs={priceFontSize}>
+      <CoffeeCardFooter>
+        <CoffeeCardPrice fs={priceFontSize}>
           R$ <strong>{formattedPrice}</strong>
-        </CoffeeListCardPrice>
+        </CoffeeCardPrice>
 
         <CoffeeCardPurchaseContainer>
           <CoffeeCardPurchaseAmountActions>
@@ -82,7 +80,7 @@ export const CoffeeCard: React.FC<CoffeeCardProps> = ({
           </CoffeeCardPurchaseCart>
         </CoffeeCardPurchaseContainer>
         {/*  */}
-      </CoffeeListCardFooter>
-    </CoffeeListCardContainer>
+      </CoffeeCardFooter>
+    </CoffeeCardContainer>
   )
 }
