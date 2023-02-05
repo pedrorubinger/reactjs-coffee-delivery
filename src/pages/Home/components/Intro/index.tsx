@@ -1,3 +1,5 @@
+import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react"
+
 import {
   ContentBackground,
   IntroCoffeeImage,
@@ -10,9 +12,7 @@ import {
   IntroTextualContent,
   IntroTitle,
 } from "./styles"
-
 import CoffeeImage from "../../../../assets/CoffeeIntro.svg"
-import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react"
 
 export const Intro = () => {
   return (
