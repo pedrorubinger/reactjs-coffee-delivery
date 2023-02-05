@@ -9,7 +9,7 @@ import MacchiatoImg from "../assets/Macchiato.svg"
 
 import { Coffee } from "../interfaces"
 
-export const coffeeListData: Coffee[] = [
+export const CoffeeListData: Coffee[] = [
   {
     id: "1",
     labels: ["tradicional"],

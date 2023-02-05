@@ -39,11 +39,18 @@ export const FinishOrderAddress: React.FC<FinishOrderAddressProps> = () => {
         <FinishOrderAddressInputRow>
           <Input id="district" placeholder="Bairro" width="35%" />
 
-          <Input id="city" placeholder="Cidade" width="55%" disabled />
+          <Input
+            id="city"
+            placeholder="Cidade"
+            title="Este campo é preenchido automaticamente com base no seu CEP"
+            width="55%"
+            disabled
+          />
 
           <Input
             id="state"
             placeholder="UF"
+            title="Este campo é preenchido automaticamente com base no seu CEP"
             width="10%"
             minWidth="4.375rem"
             disabled

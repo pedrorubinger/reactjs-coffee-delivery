@@ -8,6 +8,8 @@ export const FinishOrderPaymentHeader = styled.header`
   svg {
     color: ${({ theme }) => theme["purple"]};
   }
+
+  margin-bottom: 0.5rem;
 `
 
 export const FinishOrderPaymentHeaderContent = styled.div`
@@ -47,7 +49,7 @@ export const FinishOrderPaymentOptions = styled.div`
   gap: 0.75rem;
 `
 
-export const FinishOrderPaymentCard = styled.div`
+export const FinishOrderPaymentCard = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -56,6 +58,14 @@ export const FinishOrderPaymentCard = styled.div`
   padding: 1rem;
   background: ${({ theme }) => theme["base-button"]};
   border-radius: 6px;
+  border: none;
+
+  cursor: pointer;
+  transition: 0.4s;
+
+  :hover {
+    background: ${({ theme }) => theme["base-hover"]};
+  }
 
   svg {
     color: ${({ theme }) => theme["purple"]};
@@ -65,7 +75,7 @@ export const FinishOrderPaymentCard = styled.div`
     font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
 
     color: ${({ theme }) => theme["base-text"]};

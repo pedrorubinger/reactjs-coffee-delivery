@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { coffeeListData } from "../../../../../data/CoffeeListData"
+import { CoffeeListData } from "../../../../../data/CoffeeListData"
 import { Coffee } from "../../../../../interfaces"
 import {
   CoffeeListContainer,
@@ -11,7 +11,7 @@ import {
 import { CoffeeCard } from "../Card"
 
 export const CoffeeList = () => {
-  const [list, setList] = useState<Coffee[]>(coffeeListData)
+  const [list, setList] = useState<Coffee[]>(CoffeeListData)
 
   const onChangeAmount = (operation: "-" | "+", id: string) => {
     const getAmount = (amount: number): number => {

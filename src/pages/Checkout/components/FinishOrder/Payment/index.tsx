@@ -1,5 +1,6 @@
-import { CreditCard, CurrencyDollar } from "phosphor-react"
+import { CurrencyDollar } from "phosphor-react"
 
+import { PaymentMethodsData } from "../../../../../data/PaymentMethods"
 import { FinishOrderCard } from "../Card"
 import {
   FinishOrderPaymentCard,
@@ -25,20 +26,14 @@ export const FinishOrderPayment: React.FC<FinishOrderPaymentProps> = () => {
       </FinishOrderPaymentHeader>
 
       <FinishOrderPaymentOptions>
-        <FinishOrderPaymentCard>
-          <CreditCard size={16} />
-          <span>Cartão de Crédito</span>
-        </FinishOrderPaymentCard>
-
-        <FinishOrderPaymentCard>
-          <CreditCard size={16} />
-          <span>Cartão de Crédito</span>
-        </FinishOrderPaymentCard>
-
-        <FinishOrderPaymentCard>
-          <CreditCard size={16} />
-          <span>Cartão de Crédito</span>
-        </FinishOrderPaymentCard>
+        {PaymentMethodsData.map(({ id, name, Icon }) => (
+          <FinishOrderPaymentCard
+            key={id}
+            title={`Pagar com ${name.toLowerCase()}`}>
+            <Icon size={16} />
+            <span>{name}</span>
+          </FinishOrderPaymentCard>
+        ))}
       </FinishOrderPaymentOptions>
     </FinishOrderCard>
   )

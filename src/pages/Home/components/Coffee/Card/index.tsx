@@ -1,6 +1,6 @@
 import { ShoppingCart, Minus, Plus } from "phosphor-react"
 
-import { Coffee } from "../../../../../data/CoffeeListData"
+import { Coffee } from "../../../../../interfaces"
 import { formatCurrency } from "../../../../../utils"
 import {
   CoffeeLabelCard,
