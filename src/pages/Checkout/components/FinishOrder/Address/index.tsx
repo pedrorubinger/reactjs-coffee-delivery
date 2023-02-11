@@ -35,13 +35,13 @@ export const FinishOrderAddress: React.FC<FinishOrderAddressProps> = () => {
             <Input id="street" placeholder="Rua" width="100%" />
           </FinishOrderAddressInputRow>
 
-          <FinishOrderAddressInputRow>
+          <FinishOrderAddressInputRow id="finish-order-second-row">
             <Input id="number" placeholder="Número" width="45%" />
 
             <Input id="complement" placeholder="Complemento" />
           </FinishOrderAddressInputRow>
 
-          <FinishOrderAddressInputRow>
+          <FinishOrderAddressInputRow id="finish-order-last-row">
             <Input id="district" placeholder="Bairro" width="35%" />
 
             <Input

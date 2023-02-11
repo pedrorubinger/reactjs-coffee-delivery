@@ -47,6 +47,16 @@ export const FinishOrderPaymentOptions = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+
+  @media (max-width: 724px) {
+    flex-direction: column;
+    width: 100%;
+
+    button {
+      width: 75%;
+      min-width: 190px;
+    }
+  }
 `
 
 export const FinishOrderPaymentCard = styled.button`

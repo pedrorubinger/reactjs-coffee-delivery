@@ -3,6 +3,34 @@ import styled from "styled-components"
 export const FinishOrderAddressContainer = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 740px) {
+    #finish-order-last-row {
+      flex-direction: column;
+      width: 100%;
+
+      div,
+      input {
+        width: 100%;
+      }
+    }
+
+    &:first-child input {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 660px) {
+    #finish-order-second-row {
+      flex-direction: column;
+      width: 100%;
+
+      div,
+      input {
+        width: 100%;
+      }
+    }
+  }
 `
 
 export const FinishOrderAddressHeader = styled.header`

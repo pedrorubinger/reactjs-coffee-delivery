@@ -15,6 +15,10 @@ export const ReviewOrderCard = styled.div`
 
   background: ${({ theme }) => theme["base-card"]};
   border-radius: 6px 44px;
+
+  @media (max-width: 460px) {
+    padding: 1.5rem;
+  }
 `
 
 export const ReviewOrderCardItem = styled.div`
@@ -67,6 +71,11 @@ export const ReviewOrderCardItemHeader = styled.div`
 
     color: ${({ theme }) => theme["base-text"]};
   }
+
+  @media (max-width: 460px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `
 
 export const ReviewOrderCardItemFooter = styled.div`
@@ -74,6 +83,11 @@ export const ReviewOrderCardItemFooter = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
+
+  @media (max-width: 410px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `
 
 export const ReviewOrderRemoveItemButton = styled.button`
