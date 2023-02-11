@@ -24,8 +24,15 @@ interface ReviewOrderProps {}
 export const ReviewOrder: React.FC<ReviewOrderProps> = () => {
   const { cart, onRemoveCartItem } = useContext(CartContext)
 
+  const getTotal = () => {
+    const items = cart.map((item) => item.price * item.amount)
+    const total = items.reduce((acc, curr) => acc + curr, 0)
+
+    return total
+  }
+
   const isCartEmpty = !cart?.length
-  const total = 2970
+  const total = getTotal()
   const shippingFee = 350
 
   return (
@@ -41,11 +48,15 @@ export const ReviewOrder: React.FC<ReviewOrderProps> = () => {
               <ReviewOrderCartItemContent>
                 <ReviewOrderCardItemHeader>
                   <h2>{coffee.title}</h2>
-                  <h3>{formatCurrency(coffee.price, true)}</h3>
+                  <h3>{formatCurrency(coffee.price * coffee.amount, true)}</h3>
                 </ReviewOrderCardItemHeader>
 
                 <ReviewOrderCardItemFooter>
-                  <PurchaseActions coffee={coffee} height={2} />
+                  <PurchaseActions
+                    coffee={coffee}
+                    height={2}
+                    onChangeType="cart"
+                  />
 
                   <ReviewOrderRemoveItemButton
                     onClick={() => onRemoveCartItem(coffee.id)}>

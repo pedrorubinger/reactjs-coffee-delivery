@@ -3,13 +3,19 @@ import React, { createContext, useState } from "react"
 import { Coffee } from "../interfaces"
 import { CoffeeListData } from "../data/CoffeeListData"
 
+type ChangeAmountType = "cart" | "list"
+
 interface CartContextType {
   cart: Coffee[]
   coffeeList: Coffee[]
   cartCoffeeIds: string[]
   onRemoveCartItem: (id: string) => void
-  onChangeCartItem: (coffee: Coffee, op: "+" | "-") => void
-  onChangeAmount: (operation: "-" | "+", id: string) => void
+  onAddToCart: (coffee: Coffee) => void
+  onChangeAmount: (
+    operation: "-" | "+",
+    id: string,
+    type?: ChangeAmountType
+  ) => void
 }
 
 interface CartContextProviderProps {
@@ -28,7 +34,11 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     setCartCoffeeIds((prev) => prev.filter((id) => id !== coffeeId))
   }
 
-  const onChangeAmount = (operation: "-" | "+", id: string) => {
+  const onChangeAmount = (
+    operation: "-" | "+",
+    id: string,
+    type: ChangeAmountType = "list"
+  ) => {
     const getAmount = (amount: number): number => {
       if (amount <= 0) return 1
       if (amount >= 50) return 50
@@ -48,39 +58,46 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         return { ...item }
       })
     )
+
+    if (type === "cart") {
+      setCart((prev) =>
+        prev.map((item) => {
+          if (item.id === id) {
+            let itemAmount = item.amount
+            const amount = operation === "+" ? ++itemAmount : --itemAmount ?? 1
+
+            return { ...item, amount: getAmount(amount) }
+          }
+
+          return { ...item }
+        })
+      )
+    }
   }
 
-  const onChangeCartItem = (coffee: Coffee, op: "+" | "-") => {
-    if (op === "-") {
-      setCartCoffeeIds((prev) => [...prev].filter((id) => coffee.id !== id))
-      setCart((prev) => [...prev].filter((item) => item.id !== coffee.id))
+  const onAddToCart = (coffee: Coffee) => {
+    const isCoffeeAlreadyInCart = cartCoffeeIds.includes(coffee.id)
+
+    if (isCoffeeAlreadyInCart) {
+      const coffeeInCart = cart.find((item) => item.id === coffee.id)
+
+      if (coffee.amount !== coffeeInCart?.amount) {
+        setCart((prev) =>
+          [...prev].map((item) => {
+            if (item.id === coffee.id) {
+              return { ...coffee }
+            }
+
+            return { ...item }
+          })
+        )
+      }
+
       return
     }
 
-    if (op === "+") {
-      const isCoffeeAlreadyInCart = cartCoffeeIds.includes(coffee.id)
-
-      if (isCoffeeAlreadyInCart) {
-        const coffeeInCart = cart.find((item) => item.id === coffee.id)
-
-        if (coffee.amount !== coffeeInCart?.amount) {
-          setCart((prev) =>
-            [...prev].map((item) => {
-              if (item.id === coffee.id) {
-                return { ...coffee }
-              }
-
-              return { ...item }
-            })
-          )
-        }
-
-        return
-      }
-
-      setCartCoffeeIds((prev) => [...prev, coffee.id])
-      setCart((prev) => [{ ...coffee }, ...prev])
-    }
+    setCartCoffeeIds((prev) => [...prev, coffee.id])
+    setCart((prev) => [{ ...coffee }, ...prev])
   }
 
   return (
@@ -89,7 +106,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         cart,
         coffeeList,
         cartCoffeeIds,
-        onChangeCartItem,
+        onAddToCart,
         onChangeAmount,
         onRemoveCartItem,
       }}>

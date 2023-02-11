@@ -24,7 +24,7 @@ interface CoffeeCardProps {
 }
 
 export const CoffeeCard: React.FC<CoffeeCardProps> = ({ coffee }) => {
-  const { onChangeCartItem } = useContext(CartContext)
+  const { onAddToCart } = useContext(CartContext)
 
   const cartButtonTitle = `Adicionar ${coffee.amount} ${
     coffee.amount === 1 ? "unidade" : "unidades"
@@ -59,7 +59,7 @@ export const CoffeeCard: React.FC<CoffeeCardProps> = ({ coffee }) => {
 
           <CoffeeCardPurchaseCart
             title={cartButtonTitle}
-            onClick={() => onChangeCartItem(coffee, "+")}>
+            onClick={() => onAddToCart(coffee)}>
             <ShoppingCart size={20} weight="fill" />
           </CoffeeCardPurchaseCart>
         </CoffeeCardPurchaseContainer>

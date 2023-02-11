@@ -13,9 +13,14 @@ interface Props {
   coffee: Coffee
   /** @default 2.375 (in rem) */
   height?: number
+  onChangeType?: "list" | "cart"
 }
 
-export const PurchaseActions: React.FC<Props> = ({ coffee, height }) => {
+export const PurchaseActions: React.FC<Props> = ({
+  coffee,
+  height,
+  onChangeType = "list",
+}) => {
   const { onChangeAmount } = useContext(CartContext)
 
   return (
@@ -23,7 +28,7 @@ export const PurchaseActions: React.FC<Props> = ({ coffee, height }) => {
       <CoffeeCardPurchaseControl
         type="button"
         title={`Remover uma unidade de ${coffee.title}`}
-        onClick={() => onChangeAmount("-", coffee.id)}>
+        onClick={() => onChangeAmount("-", coffee.id, onChangeType)}>
         <Minus size={14} />
       </CoffeeCardPurchaseControl>
 
@@ -32,7 +37,7 @@ export const PurchaseActions: React.FC<Props> = ({ coffee, height }) => {
       <CoffeeCardPurchaseControl
         type="button"
         title={`Adicionar mais um café ${coffee.title}`}
-        onClick={() => onChangeAmount("+", coffee.id)}>
+        onClick={() => onChangeAmount("+", coffee.id, onChangeType)}>
         <Plus size={14} />
       </CoffeeCardPurchaseControl>
     </CoffeeCardPurchaseActions>
