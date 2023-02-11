@@ -139,35 +139,6 @@ export const CoffeeCardPurchaseContainer = styled.div`
   gap: 0.5rem;
 `
 
-export const CoffeeCardPurchaseAmountActions = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  padding: 0.5rem;
-  gap: 0.25rem;
-
-  width: 4.5rem;
-  height: 2.375rem;
-  border-radius: 6px;
-
-  background: ${({ theme }) => theme["base-button"]};
-`
-
-export const CoffeeCardPurchaseAmount = styled.span``
-
-export const CoffeeCardPurchaseControl = styled.button`
-  display: flex;
-
-  border: 0;
-  cursor: pointer;
-
-  svg {
-    color: ${({ theme }) => theme["purple"]};
-  }
-`
-
 export const CoffeeCardPurchaseCart = styled.button`
   display: flex;
   flex-direction: row;
@@ -190,7 +161,13 @@ export const CoffeeCardPurchaseCart = styled.button`
     color: ${({ theme }) => theme["white"]};
   }
 
-  &:hover {
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    /* background: ${({ theme }) => theme["purple"]}; */
+  }
+
+  &:not(:disabled):hover {
     background: ${({ theme }) => theme["purple"]};
   }
 `

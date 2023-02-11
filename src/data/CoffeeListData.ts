@@ -76,7 +76,7 @@ export const CoffeeListData: Coffee[] = [
     image: CapuccinoImg,
   },
   {
-    id: "7",
+    id: "8",
     labels: ["tradicional", "com leite"],
     amount: 1,
     title: "Macchiato",

@@ -1,5 +1,8 @@
-import { ShoppingCart, Minus, Plus } from "phosphor-react"
+import { ShoppingCart } from "phosphor-react"
+import { useContext } from "react"
 
+import { PurchaseActions } from "../../../../../components/PurchaseActions"
+import { CartContext } from "../../../../../contexts/CartContext"
 import { Coffee } from "../../../../../interfaces"
 import { formatCurrency } from "../../../../../utils"
 import {
@@ -13,21 +16,19 @@ import {
   CoffeeCardPrice,
   CoffeeCardPurchaseContainer,
   CoffeeCardPurchaseCart,
-  CoffeeCardPurchaseAmountActions,
-  CoffeeCardPurchaseControl,
-  CoffeeCardPurchaseAmount,
   CoffeeCardDescription,
 } from "./styles"
 
 interface CoffeeCardProps {
   coffee: Coffee
-  onChangeAmount: (operation: "-" | "+", id: string) => void
 }
 
-export const CoffeeCard: React.FC<CoffeeCardProps> = ({
-  coffee,
-  onChangeAmount,
-}) => {
+export const CoffeeCard: React.FC<CoffeeCardProps> = ({ coffee }) => {
+  const { onChangeCartItem } = useContext(CartContext)
+
+  const cartButtonTitle = `Adicionar ${coffee.amount} ${
+    coffee.amount === 1 ? "unidade" : "unidades"
+  } de ${coffee.title} ao seu carrinho`
   const formattedPrice = formatCurrency(coffee.price)
   const priceFontSize =
     formattedPrice?.length >= 8 ? 1.5 - formattedPrice?.length / 30 : 1.5
@@ -54,28 +55,11 @@ export const CoffeeCard: React.FC<CoffeeCardProps> = ({
         </CoffeeCardPrice>
 
         <CoffeeCardPurchaseContainer>
-          <CoffeeCardPurchaseAmountActions>
-            <CoffeeCardPurchaseControl
-              type="button"
-              title={`Remover uma unidade de ${coffee.title}`}
-              onClick={() => onChangeAmount("-", coffee.id)}>
-              <Minus size={14} />
-            </CoffeeCardPurchaseControl>
-
-            <CoffeeCardPurchaseAmount>{coffee.amount}</CoffeeCardPurchaseAmount>
-
-            <CoffeeCardPurchaseControl
-              type="button"
-              title={`Adicionar mais um café ${coffee.title}`}
-              onClick={() => onChangeAmount("+", coffee.id)}>
-              <Plus size={14} />
-            </CoffeeCardPurchaseControl>
-          </CoffeeCardPurchaseAmountActions>
+          <PurchaseActions coffee={coffee} />
 
           <CoffeeCardPurchaseCart
-            title={`Adicionar ${coffee.amount} ${
-              coffee.amount === 1 ? "unidade" : "unidades"
-            } de ${coffee.title} ao seu carrinho`}>
+            title={cartButtonTitle}
+            onClick={() => onChangeCartItem(coffee, "+")}>
             <ShoppingCart size={20} weight="fill" />
           </CoffeeCardPurchaseCart>
         </CoffeeCardPurchaseContainer>

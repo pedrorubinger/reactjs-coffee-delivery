@@ -1,39 +1,16 @@
-import { useState } from "react"
+import { useContext } from "react"
 
-import { CoffeeListData } from "../../../../../data/CoffeeListData"
-import { Coffee } from "../../../../../interfaces"
+import { CartContext } from "../../../../../contexts/CartContext"
+import { CoffeeCard } from "../Card"
 import {
   CoffeeListContainer,
   CoffeeListContent,
   CoffeeListTitle,
   CoffeeListCardsContainer,
 } from "./styles"
-import { CoffeeCard } from "../Card"
 
 export const CoffeeList = () => {
-  const [list, setList] = useState<Coffee[]>(CoffeeListData)
-
-  const onChangeAmount = (operation: "-" | "+", id: string) => {
-    const getAmount = (amount: number): number => {
-      if (amount <= 0) return 1
-      if (amount >= 50) return 50
-
-      return amount
-    }
-
-    setList((prev) =>
-      prev.map((item) => {
-        if (item.id === id) {
-          let itemAmount = item.amount
-          const amount = operation === "+" ? ++itemAmount : --itemAmount ?? 1
-
-          return { ...item, amount: getAmount(amount) }
-        }
-
-        return { ...item }
-      })
-    )
-  }
+  const { coffeeList } = useContext(CartContext)
 
   return (
     <CoffeeListContainer>
@@ -41,12 +18,8 @@ export const CoffeeList = () => {
         <CoffeeListTitle>Nossos cafés</CoffeeListTitle>
 
         <CoffeeListCardsContainer>
-          {list.map((coffee) => (
-            <CoffeeCard
-              key={coffee.id}
-              coffee={coffee}
-              onChangeAmount={onChangeAmount}
-            />
+          {coffeeList.map((coffee) => (
+            <CoffeeCard key={coffee.id} coffee={coffee} />
           ))}
         </CoffeeListCardsContainer>
       </CoffeeListContent>
