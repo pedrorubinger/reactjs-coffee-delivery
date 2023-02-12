@@ -5,6 +5,8 @@ import { formatCurrency } from "../../../../utils"
 import { PurchaseActions } from "../../../../components/PurchaseActions"
 import { SectionTitle } from "../SectionTitle"
 import {
+  EmptyCartContainer,
+  EmptyCartText,
   FinishOrderButton,
   ReviewOrderCard,
   ReviewOrderCardItem,
@@ -17,7 +19,7 @@ import {
   ReviewOrderContainer,
   ReviewOrderRemoveItemButton,
 } from "./styles"
-import { TrashSimple } from "phosphor-react"
+import { SmileySad, TrashSimple } from "phosphor-react"
 
 interface ReviewOrderProps {}
 
@@ -40,34 +42,44 @@ export const ReviewOrder: React.FC<ReviewOrderProps> = () => {
       <SectionTitle title="Cafés selecionados" />
 
       <ReviewOrderCard>
-        {cart.map((coffee) => {
-          return (
-            <ReviewOrderCardItem key={coffee.id}>
-              <ReviewOrderCardItemImg src={coffee.image} />
+        {!!isCartEmpty && (
+          <EmptyCartContainer>
+            <SmileySad size={25} />
+            <EmptyCartText>O seu carrinho de compras está vazio.</EmptyCartText>
+          </EmptyCartContainer>
+        )}
 
-              <ReviewOrderCartItemContent>
-                <ReviewOrderCardItemHeader>
-                  <h2>{coffee.title}</h2>
-                  <h3>{formatCurrency(coffee.price * coffee.amount, true)}</h3>
-                </ReviewOrderCardItemHeader>
+        {!isCartEmpty &&
+          cart.map((coffee) => {
+            return (
+              <ReviewOrderCardItem key={coffee.id}>
+                <ReviewOrderCardItemImg src={coffee.image} />
 
-                <ReviewOrderCardItemFooter>
-                  <PurchaseActions
-                    coffee={coffee}
-                    height={2}
-                    onChangeType="cart"
-                  />
+                <ReviewOrderCartItemContent>
+                  <ReviewOrderCardItemHeader>
+                    <h2>{coffee.title}</h2>
+                    <h3>
+                      {formatCurrency(coffee.price * coffee.amount, true)}
+                    </h3>
+                  </ReviewOrderCardItemHeader>
 
-                  <ReviewOrderRemoveItemButton
-                    onClick={() => onRemoveCartItem(coffee.id)}>
-                    <TrashSimple size={16} />
-                    <span>Remover</span>
-                  </ReviewOrderRemoveItemButton>
-                </ReviewOrderCardItemFooter>
-              </ReviewOrderCartItemContent>
-            </ReviewOrderCardItem>
-          )
-        })}
+                  <ReviewOrderCardItemFooter>
+                    <PurchaseActions
+                      coffee={coffee}
+                      height={2}
+                      onChangeType="cart"
+                    />
+
+                    <ReviewOrderRemoveItemButton
+                      onClick={() => onRemoveCartItem(coffee.id)}>
+                      <TrashSimple size={16} />
+                      <span>Remover</span>
+                    </ReviewOrderRemoveItemButton>
+                  </ReviewOrderCardItemFooter>
+                </ReviewOrderCartItemContent>
+              </ReviewOrderCardItem>
+            )
+          })}
 
         {!isCartEmpty && (
           <ReviewOrderCartFooter>

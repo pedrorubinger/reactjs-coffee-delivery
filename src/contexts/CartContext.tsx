@@ -1,14 +1,17 @@
 import React, { createContext, useState } from "react"
 
-import { Coffee } from "../interfaces"
+import { Coffee, PaymentMethod } from "../interfaces"
 import { CoffeeListData } from "../data/CoffeeListData"
+import { PaymentMethodsData } from "../data/PaymentMethods"
 
 type ChangeAmountType = "cart" | "list"
 
 interface CartContextType {
   cart: Coffee[]
+  paymentMethod: PaymentMethod | null
   coffeeList: Coffee[]
   cartCoffeeIds: string[]
+  onSelectPaymentMethod: (id: string) => void
   onRemoveCartItem: (id: string) => void
   onAddToCart: (coffee: Coffee) => void
   onChangeAmount: (
@@ -26,12 +29,18 @@ export const CartContext = createContext({} as CartContextType)
 
 export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const [cart, setCart] = useState<Coffee[]>([])
+  const paymentOptions = useState<PaymentMethod[]>(PaymentMethodsData)[0]
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null)
   const [cartCoffeeIds, setCartCoffeeIds] = useState<string[]>([])
   const [coffeeList, setCoffeeList] = useState<Coffee[]>(CoffeeListData)
 
   const onRemoveCartItem = (coffeeId: string) => {
     setCart((prev) => prev.filter((item) => item.id !== coffeeId))
     setCartCoffeeIds((prev) => prev.filter((id) => id !== coffeeId))
+  }
+
+  const onSelectPaymentMethod = (id: string) => {
+    setPaymentMethod(paymentOptions.find((option) => option.id === id) ?? null)
   }
 
   const onChangeAmount = (
@@ -106,6 +115,8 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         cart,
         coffeeList,
         cartCoffeeIds,
+        paymentMethod,
+        onSelectPaymentMethod,
         onAddToCart,
         onChangeAmount,
         onRemoveCartItem,

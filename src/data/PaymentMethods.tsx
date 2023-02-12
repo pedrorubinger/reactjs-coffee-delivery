@@ -1,6 +1,6 @@
 import { Bank, CreditCard, Money } from "phosphor-react"
 
-import { PaymentMethod } from "../interfaces/PaymentMethod"
+import { PaymentMethod } from "../interfaces"
 
 export const PaymentMethodsData: PaymentMethod[] = [
   {

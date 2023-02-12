@@ -200,3 +200,14 @@ export const FinishOrderButton = styled.button`
     font-stretch: 100;
   }
 `
+
+export const EmptyCartContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+`
+
+export const EmptyCartText = styled.span`
+  color: ${({ theme }) => theme["base-text"]};
+`

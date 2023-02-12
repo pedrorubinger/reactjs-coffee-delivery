@@ -59,14 +59,20 @@ export const FinishOrderPaymentOptions = styled.div`
   }
 `
 
-export const FinishOrderPaymentCard = styled.button`
+interface FinishOrderPaymentBtnProps {
+  /** @default false */
+  isSelected?: boolean
+}
+
+export const FinishOrderPaymentButton = styled.button<FinishOrderPaymentBtnProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.75rem;
 
   padding: 1rem;
-  background: ${({ theme }) => theme["base-button"]};
+  background: ${({ theme, isSelected = false }) =>
+    isSelected ? theme["purple"] : theme["base-button"]};
   border-radius: 6px;
   border: none;
 
@@ -74,11 +80,13 @@ export const FinishOrderPaymentCard = styled.button`
   transition: 0.4s;
 
   :hover {
-    background: ${({ theme }) => theme["base-hover"]};
+    background: ${({ isSelected, theme }) =>
+      !isSelected && theme["base-hover"]};
   }
 
   svg {
-    color: ${({ theme }) => theme["purple"]};
+    color: ${({ isSelected, theme }) =>
+      isSelected ? theme["white"] : theme["purple"]};
   }
 
   span {
@@ -88,6 +96,7 @@ export const FinishOrderPaymentCard = styled.button`
     font-size: 0.75rem;
     text-transform: uppercase;
 
-    color: ${({ theme }) => theme["base-text"]};
+    color: ${({ theme, isSelected }) =>
+      isSelected ? theme["white"] : theme["base-text"]};
   }
 `

@@ -1,9 +1,11 @@
 import { CurrencyDollar } from "phosphor-react"
+import { useContext } from "react"
+import { CartContext } from "../../../../../contexts/CartContext"
 
 import { PaymentMethodsData } from "../../../../../data/PaymentMethods"
 import { FinishOrderCard } from "../Card"
 import {
-  FinishOrderPaymentCard,
+  FinishOrderPaymentButton,
   FinishOrderPaymentHeader,
   FinishOrderPaymentHeaderContent,
   FinishOrderPaymentOptions,
@@ -12,6 +14,8 @@ import {
 interface FinishOrderPaymentProps {}
 
 export const FinishOrderPayment: React.FC<FinishOrderPaymentProps> = () => {
+  const { paymentMethod, onSelectPaymentMethod } = useContext(CartContext)
+
   return (
     <FinishOrderCard>
       <FinishOrderPaymentHeader>
@@ -26,14 +30,20 @@ export const FinishOrderPayment: React.FC<FinishOrderPaymentProps> = () => {
       </FinishOrderPaymentHeader>
 
       <FinishOrderPaymentOptions>
-        {PaymentMethodsData.map(({ id, name, Icon }) => (
-          <FinishOrderPaymentCard
-            key={id}
-            title={`Pagar com ${name.toLowerCase()}`}>
-            <Icon size={16} />
-            <span>{name}</span>
-          </FinishOrderPaymentCard>
-        ))}
+        {PaymentMethodsData.map(({ id, name, Icon }) => {
+          const isSelected = id === paymentMethod?.id
+
+          return (
+            <FinishOrderPaymentButton
+              key={id}
+              title={`Pagar com ${name.toLowerCase()}`}
+              onClick={() => onSelectPaymentMethod(id)}
+              isSelected={isSelected}>
+              <Icon size={16} />
+              <span>{name}</span>
+            </FinishOrderPaymentButton>
+          )
+        })}
       </FinishOrderPaymentOptions>
     </FinishOrderCard>
   )
